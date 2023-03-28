@@ -96,6 +96,16 @@ https://stackoverflow.blog/2021/03/31/the-key-copy-paste/
 
 # How?
 
+## How?
+
+::: incremental
+-   Manuscript contains pieces of code.
+-   Run manuscript
+    -   -\> output of code gets inserted.
+-   E.g.: Add code for t-test to your manuscript
+    -   -\> Result of t-test is added to your manuscript.
+:::
+
 ## Plots
 
 ```{r}
@@ -213,21 +223,41 @@ I can cite articles like this [@papenberg2021].
 I can also talk about @aust2022 in text.
 ```
 
-I can cite articles like this [@papenberg2021]. 
+I can cite articles like this [@papenberg2021].
 I can also talk about @aust2022 in text.
 
 ## Full manuscripts
 
 ![](pics/papaja.png){fig.align="center"}
 
-- RMarkdown template and functions
-- https://frederikaust.com/papaja_man/
+-   RMarkdown template and functions
+-   https://frederikaust.com/papaja_man/
 
 ## papaja
 
-![](pics/papaja.gif){fig.align="center" width=70%}
+![](pics/papaja.gif){fig.align="center" width="70%"}
 
 [@papenberg2021]{style="font-size:50%"}
+
+## Under the hood
+
+![](pics/under_the_hood.gif){fig.align="center" width="80%"}
+
+## Visual mode
+
+![](pics/visual_mode.gif){fig.align="center"}
+
+## The future?
+
+![](pics/elife.png){fig.align="center"}
+
+[Lewis et al. (2018) - https://elifesciences.org/articles/30274/executable]{style="font-size:50%"}
+
+## The future?
+
+![](pics/elife.gif){fig.align="center"}
+
+[Lewis et al. (2018) - https://elifesciences.org/articles/30274/executable]{style="font-size:50%"}
 
 # Downsides?
 
@@ -235,10 +265,44 @@ I can also talk about @aust2022 in text.
 
 ![](pics/well.png){fig.align="center"}
 
-::: {.incremental}
-- The learning curve might be ... steep.
-- Suddenly, a simple asterisk might be your worst enemy.
-- Collaborators and journals will hate you.
+::: incremental
+-   The learning curve might be ... steep.
+-   Suddenly, a simple asterisk might be your worst enemy.
+-   Collaborators and journals will hate you.
+:::
+
+## Your supervisor
+
+![](pics/github.png){fig.align="center"}
+
+## Collaboration via GitHub
+
+::: incremental
+-   [You need to learn version control.]{style="color: red"}
+-   [Not your "Word track changes".]{style="color: red"}
+-   [Adds some nice features.]{style="color: darkgreen"}
+-   [Version control.]{style="color: darkgreen"}
+:::
+
+## Hand in a reproducible manuscript?
+
+::: incremental
+-   Some journals might be up for that.
+    -   More in the future?
+-   It's not a (big) issue to render a Word (or Latex) file.
+:::
+
+## TRULY reproducible?
+
+-   ![](pics/gru_meme.jpg){fig.align="center"}
+
+## TRULY reproducible?
+
+::: incremental
+-   Same challenges you face with "normal" code.
+    -   Different software versions, deprecated packages ...
+-   Code containers or environments, e.g. Docker, renv.
+    -   Online repositories, e.g. CodeOcean.
 :::
 
 # What are my options?
@@ -247,23 +311,37 @@ I can also talk about @aust2022 in text.
 
 ![](pics/quarto.png){fig.align="center"}
 
-::: {.incremental}
-- Language-independent! (R, Python, Julia, Observable JavaScript)
-- Tons of output formats (html, PDF, Word, PowerPoint ...).
-- Open-source.
-- Won't go away soon. 
+::: incremental
+-   Language-independent! (R, Python, Julia, Observable JavaScript)
+-   Tons of output formats (html, PDF, Word, PowerPoint ...).
+-   Open-source.
+-   Won't go away soon.
 :::
 
 ## R Markdown
 
-::: {.incremental}
-- Only for R (mostly).
-- Also a lot of output formats.
-- Many cool pre-existing templates (papaja!).
+::: incremental
+-   Only for R (mostly).
+-   Also a lot of output formats.
+-   Many cool pre-existing templates (papaja!).
 :::
+
+## This is a "reproducible manuscript"!
 
 ## Presentations
 
-[This presentation is a "reproducible manuscript"!]{style="font-size:50px"}
+![](pics/presenter_view.png){fig.align="center"}
+
+[https://quarto.org/docs/presentations/revealjs/]{style="font-size:50%"}
+
+## In general ...
+
+![](pics/guides.png){fig.align="center"}
+
+[https://quarto.org/docs/guide/]{style="font-size:50%"}
+
+# Thank you!
+
+# Questions?
 
 ## References
