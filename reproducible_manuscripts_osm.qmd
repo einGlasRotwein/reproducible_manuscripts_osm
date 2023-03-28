@@ -1,0 +1,269 @@
+---
+title: "Reproducible Manuscripts"
+author: "Juli Nagel"
+bibliography: ref.bib
+format:
+  revealjs: 
+    theme: night
+    auto-stretch: false
+---
+
+## Setup {visibility="hidden"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+library(tidyverse)
+library(kableExtra)
+library(prmisc)
+library(effectsize)
+```
+
+# Why?
+
+## Data -\> manuscript?
+
+::: columns
+::: {.column width="40%"}
+```{r fig.height=5, fig.width=4}
+iris %>% 
+  ggplot(aes(x = Species, y = Sepal.Length, colour = Species, fill = Species)) +
+  geom_boxplot(alpha = .3) +
+  theme_classic() +
+  theme(legend.position = "top")
+```
+:::
+
+::: {.column width="30%"}
+::: {layout="[[-1], [1], [-1]]"}
+![](pics/arrow.png){fig-align="center" style="margin-top:100px"}
+:::
+:::
+
+::: {.column width="30%"}
+::: {layout="[[-1], [1], [-1]]"}
+![](pics/manuscript.png){width="300"}
+:::
+:::
+:::
+
+## Data -\> manuscript?
+
+::: columns
+::: {.column width="40%"}
+```{r fig.height=5, fig.width=4}
+iris %>% 
+  ggplot(aes(x = Species, y = Sepal.Length, colour = Species, fill = Species)) +
+  geom_boxplot(alpha = .3) +
+  theme_classic() +
+  theme(legend.position = "top")
+```
+:::
+
+::: {.column width="30%"}
+::: {layout="[[1], [1], [1]]" style="font-size:30%"}
+![](pics/arrow.png){fig-align="center" style="margin-top:100px"}
+
+![](pics/copy_paste_key.jpeg){fig-aling="center"}
+
+https://stackoverflow.blog/2021/03/31/the-key-copy-paste/
+:::
+:::
+
+::: {.column width="30%"}
+::: {layout="[[-1], [1], [-1]]"}
+![](pics/manuscript.png){width="300"}
+:::
+:::
+:::
+
+## Copy-paste?
+
+![](pics/ex1.png){width="70%" fig-align="center" style="margin-top:120px"}
+
+## Copy-paste?
+
+::: columns
+::: {.column width="50%"}
+![](pics/ex2.png){width="511"}
+:::
+
+::: {.column width="50%"}
+![](pics/ex3.png){width="361"}
+:::
+:::
+
+# How?
+
+## Plots
+
+```{r}
+#| echo: true
+#| out-width: 70%
+#| fig-align: center
+iris %>% 
+  ggplot(
+    aes(x = Species, y = Sepal.Length, colour = Species, fill = Species)
+  ) +
+  geom_boxplot(alpha = .3) +
+  theme_classic() +
+  theme(legend.position = "top")
+```
+
+## Tables
+
+```{r}
+#| echo: true
+iris %>% 
+  head %>% 
+  kable() %>% 
+  kable_styling("striped", font_size = 30)
+```
+
+## Numbers
+
+```{r}
+#| echo: true
+sample_size <- 142
+```
+
+Inline code:
+
+```{html}
+#| echo: true
+#| eval: false
+We collected data from $N=$ `r sample_size` participants.
+```
+
+Result:
+
+We collected data from $N=$ `r sample_size` participants.
+
+## Stats
+
+```{r}
+#| echo: true
+iris_t <- 
+  t.test(
+    iris$Sepal.Length[iris$Species == "setosa"], 
+    iris$Sepal.Length[iris$Species == "versicolor"]
+  )
+
+iris_d <- 
+  cohens_d(
+    iris$Sepal.Length[iris$Species == "setosa"], 
+    iris$Sepal.Length[iris$Species == "versicolor"]
+  )
+```
+
+```{html}
+#| echo: true
+#| eval: false
+Versicolor `r print_mean_sd(iris$Sepal.Length[iris$Species == "versicolor"])` 
+has a longer sepals than Setosa 
+`r print_mean_sd(iris$Sepal.Length[iris$Species == "versicolor"])`, 
+`r print_ttest(iris_t, iris_d)`.
+```
+
+[Versicolor `r print_mean_sd(iris$Sepal.Length[iris$Species == "versicolor"])` has a longer sepals than Setosa `r print_mean_sd(iris$Sepal.Length[iris$Species == "versicolor"])`, `r print_ttest(iris_t, iris_d)`.]{style="font-size:50%"}
+
+## Easier to track mistakes
+
+```{html}
+#| echo: true
+#| eval: false
+Versicolor `r print_mean_sd(iris$Sepal.Length[iris$Species == "versicolor"])` 
+has a longer sepals than Setosa 
+`r print_mean_sd(iris$Sepal.Length[iris$Species == "versicolor"])`, 
+`r print_ttest(iris_t, iris_d)`.
+```
+
+[Versicolor [`r print_mean_sd(iris$Sepal.Length[iris$Species == "versicolor"])`]{style="color: red"} has a longer sepals than Setosa [`r print_mean_sd(iris$Sepal.Length[iris$Species == "versicolor"])`]{style="color:red"}, `r print_ttest(iris_t, iris_d)`.]{style="font-size:50%"}
+
+## Easier to track mistakes
+
+```{html}
+#| echo: true
+#| eval: false
+Versicolor `r print_mean_sd(iris$Sepal.Length[iris$Species == "versicolor"])` 
+has a longer sepals than Setosa 
+`r print_mean_sd(iris$Sepal.Length[iris$Species == "versicolor"])`, 
+`r print_ttest(iris_t, iris_d)`.
+```
+
+[Versicolor [`r print_mean_sd(iris$Sepal.Length[iris$Species == "versicolor"])`]{style="color: red"} has a longer sepals than Setosa [`r print_mean_sd(iris$Sepal.Length[iris$Species == "versicolor"])`]{style="color:red"}, `r print_ttest(iris_t, iris_d)`.]{style="font-size:50%"}
+
+```{html}
+#| echo: true
+#| eval: false
+Versicolor `r print_mean_sd(iris$Sepal.Length[iris$Species == "versicolor"])` 
+has a longer sepals than Setosa 
+`r print_mean_sd(iris$Sepal.Length[iris$Species == "setosa"])`, 
+`r print_ttest(iris_t, iris_d)`.
+```
+
+[Versicolor [`r print_mean_sd(iris$Sepal.Length[iris$Species == "versicolor"])`]{style="color: red"} has a longer sepals than Setosa [`r print_mean_sd(iris$Sepal.Length[iris$Species == "setosa"])`]{style="color:red"}, `r print_ttest(iris_t, iris_d)`.]{style="font-size:50%"}
+
+## References
+
+```{html}
+#| echo: true
+I can cite articles like this [@papenberg2021]. 
+I can also talk about @aust2022 in text.
+```
+
+I can cite articles like this [@papenberg2021]. 
+I can also talk about @aust2022 in text.
+
+## Full manuscripts
+
+![](pics/papaja.png){fig.align="center"}
+
+- RMarkdown template and functions
+- https://frederikaust.com/papaja_man/
+
+## papaja
+
+![](pics/papaja.gif){fig.align="center" width=70%}
+
+[@papenberg2021]{style="font-size:50%"}
+
+# Downsides?
+
+## Downsides
+
+![](pics/well.png){fig.align="center"}
+
+::: {.incremental}
+- The learning curve might be ... steep.
+- Suddenly, a simple asterisk might be your worst enemy.
+- Collaborators and journals will hate you.
+:::
+
+# What are my options?
+
+## Quarto
+
+![](pics/quarto.png){fig.align="center"}
+
+::: {.incremental}
+- Language-independent! (R, Python, Julia, Observable JavaScript)
+- Tons of output formats (html, PDF, Word, PowerPoint ...).
+- Open-source.
+- Won't go away soon. 
+:::
+
+## R Markdown
+
+::: {.incremental}
+- Only for R (mostly).
+- Also a lot of output formats.
+- Many cool pre-existing templates (papaja!).
+:::
+
+## Presentations
+
+[This presentation is a "reproducible manuscript"!]{style="font-size:50px"}
+
+## References
